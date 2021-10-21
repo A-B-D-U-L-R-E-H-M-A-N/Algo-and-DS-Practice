@@ -1,12 +1,14 @@
+// The purpose of this function is to remove all the even numbers from the array and provide the pointer to an array only containing odd numbers.
+
 #include <iostream>
 
 using namespace std;
-
+int tmpArrayPtr;
 
 int * removeEven( int *& Arr, int size ) {
   
   int *tmpArray = new int[size]; // declaring a new temporary array in the heap.
-  int tmpArrayPtr = 0; // Setting this variable to index through the Array
+  tmpArrayPtr = 0; // Setting this variable to index through the Array
   
   for(int i=0;i<size;i++){
     if(Arr[i]%2!=0){ // if the element is odd
@@ -29,7 +31,7 @@ int * removeEven( int *& Arr, int size ) {
 int main(int argc, char const *argv[])
 {
   
-  int n = 10;
+  int n = 10;  // Can be any size
   int *myArray = new int[n];
   
   for(int i=0;i<n;i++){
@@ -43,7 +45,17 @@ int main(int argc, char const *argv[])
   }
   cout << endl;
 
-  cout << "Printing myArray after the removal of "
+  cout << "Printing myArray after the removal of EvenNumbers:" << endl ;
+
+// We can't figure out the size of the dynamically allocated array using this code. One possible method could be to 
+  myArray = removeEven(myArray, 10);
+  for(int i=0;i<tmpArrayPtr;i++){
+    cout << myArray[i] << " ";
+  }
+  cout << endl;
+
+
+
 
   return 0;
 }
