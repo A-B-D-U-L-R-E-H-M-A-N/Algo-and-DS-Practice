@@ -84,11 +84,35 @@ string LinkedList::elements() { // this function will return all values of linke
 
 void LinkedList::insertAtTail(int value) {
   // Enter your code here
+  Node * tmpHead = getHead();
+  if(tmpHead == NULL){
+    insertAtHead(value);
+  }else{
+  while(tmpHead -> nextElement){
+    tmpHead = tmpHead -> nextElement;
+  }
+  Node * newnode = new Node();
+  newnode -> nextElement = NULL;
+  newnode -> data = value;
+  tmpHead ->nextElement = newnode;
+  }
+  
 } 
 
 
 int main(int argc, char const *argv[])
 {
+  LinkedList myList;
+  for (int i = 0; i < 10; ++i)
+  {
+    myList.insertAtHead(i);
+  }
+
+  myList.insertAtTail(2010);
+  myList.insertAtTail(2011);
+
+
+  myList.printList();
   
   return 0;
 }
