@@ -28,6 +28,7 @@ class LinkedList {
   bool search(int value);
   bool deleteAtHead();
   bool Delete(int value);
+  int length();
 };
 
 LinkedList::LinkedList() {
@@ -154,6 +155,16 @@ bool LinkedList::Delete(int value){
 }
 
 
+int LinkedList::length(){
+  int count = 0;
+  Node *tmpPointer = getHead();
+  while(tmpPointer){
+    count++;
+    tmpPointer = tmpPointer->nextElement;
+  }
+  return count;
+}
+
 int main(int argc, char const *argv[])
 {
   LinkedList myList;
@@ -165,6 +176,8 @@ int main(int argc, char const *argv[])
   myList.insertAtTail(2010);
   myList.insertAtTail(2011);
   cout << "/n" << "Finding 2010 " << myList.search(2010) << endl;
+  myList.Delete(2011);
+  cout << endl << " " << myList.length();
 
 
   myList.printList();
