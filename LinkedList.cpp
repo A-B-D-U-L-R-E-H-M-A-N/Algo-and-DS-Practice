@@ -25,6 +25,9 @@ class LinkedList {
   void insertAtHead(int value);
   string elements();
   void insertAtTail(int value);
+  bool search(int value);
+  bool deleteAtHead();
+  bool Delete(int value);
 };
 
 LinkedList::LinkedList() {
@@ -99,6 +102,57 @@ void LinkedList::insertAtTail(int value) {
   
 } 
 
+bool LinkedList::search(int value){ 
+  // Write your code here
+  Node * tmpPointer = getHead();
+  if(isEmpty()){
+    return false;
+  }else{
+    do{
+      if(tmpPointer->data == value){
+        return true;
+      }else{
+        tmpPointer = tmpPointer -> nextElement;
+      }
+    }while(tmpPointer);
+  }
+  return false;
+}
+
+bool LinkedList::deleteAtHead() {
+  if (isEmpty()) { // check if lis is empty
+    cout << "List is Empty" << endl;
+    return false;
+  }
+  Node * currentNode = head; 
+  head = head->nextElement; 
+  
+  delete currentNode;
+  return true;
+}
+
+bool LinkedList::Delete(int value){
+  Node *tmpPointer = getHead();
+  if(isEmpty()){
+    return false;
+  }else if(tmpPointer -> data == value){
+    deleteAtHead();
+    return true;
+  }else{
+    while(tmpPointer->nextElement){
+      if(tmpPointer->nextElement->data==value){
+        Node *tmpNode = tmpPointer -> nextElement;
+        tmpPointer -> nextElement = tmpNode -> nextElement;
+        delete(tmpNode);
+        return true;
+      }else{
+        tmpPointer = tmpPointer->nextElement;
+      }
+    }
+  }
+  return false;
+}
+
 
 int main(int argc, char const *argv[])
 {
@@ -110,6 +164,7 @@ int main(int argc, char const *argv[])
 
   myList.insertAtTail(2010);
   myList.insertAtTail(2011);
+  cout << "/n" << "Finding 2010 " << myList.search(2010) << endl;
 
 
   myList.printList();
