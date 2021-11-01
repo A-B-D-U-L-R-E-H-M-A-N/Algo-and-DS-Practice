@@ -29,6 +29,7 @@ class LinkedList {
   bool deleteAtHead();
   bool Delete(int value);
   int length();
+  string reverse();
 };
 
 LinkedList::LinkedList() {
@@ -165,6 +166,20 @@ int LinkedList::length(){
   return count;
 }
 
+string LinkedList::reverse() {
+    // Write your code here
+  Node *p = NULL;
+  Node *q = getHead();
+  while(head->nextElement){
+    head = head -> nextElement;
+    q -> nextElement = p;
+    p = q;
+    q = head;
+  }
+  head -> nextElement = p;
+return elements();
+}
+
 int main(int argc, char const *argv[])
 {
   LinkedList myList;
@@ -181,6 +196,8 @@ int main(int argc, char const *argv[])
 
 
   myList.printList();
+
+  cout << myList.reverse();
   
   return 0;
 }
