@@ -30,6 +30,7 @@ class LinkedList {
   bool Delete(int value);
   int length();
   string reverse();
+  bool detectLoop();
 };
 
 LinkedList::LinkedList() {
@@ -178,6 +179,29 @@ string LinkedList::reverse() {
   }
   head -> nextElement = p;
 return elements();
+}
+
+bool LinkedList::detectLoop(){
+  Node *first = head;
+  Node *second = head;
+
+  while(second->nextElement){
+      second = second ->nextElement;
+    if(second -> nextElement){
+      second = second -> nextElement;
+      if(first == second){
+        return true;
+      }
+      if(first -> nextElement){
+      first = first -> nextElement;
+      if(first == second){
+        return true;
+      }
+      }
+    }
+  }
+
+  return false;
 }
 
 int main(int argc, char const *argv[])
