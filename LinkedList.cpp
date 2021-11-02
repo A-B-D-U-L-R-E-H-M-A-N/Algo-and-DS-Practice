@@ -31,6 +31,7 @@ class LinkedList {
   int length();
   string reverse();
   bool detectLoop();
+  int findMid();
 };
 
 LinkedList::LinkedList() {
@@ -202,6 +203,22 @@ bool LinkedList::detectLoop(){
   }
 
   return false;
+}
+
+
+int LinkedList::findMid() {
+  int mid;
+  if(length()%2==0){
+    mid = length()/2;
+  }else{
+    mid = (length()/2) + 1;
+  }
+  Node *tmp = head;
+  for(int i=0;i<mid-1;i++){
+    tmp = tmp ->nextElement;
+  }
+  return tmp -> data;
+  return 0;
 }
 
 int main(int argc, char const *argv[])
