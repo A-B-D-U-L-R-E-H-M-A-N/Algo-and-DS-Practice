@@ -34,6 +34,8 @@ class LinkedList {
   int findMidSlow();
   int findMidFast();
   string removeDuplicates();
+  string Union(LinkedList list1, LinkedList list2);
+  string Intersection(LinkedList list1,LinkedList list2);
 };
 
 LinkedList::LinkedList() {
@@ -261,6 +263,31 @@ string LinkedList::removeDuplicates() {
     second = first;
   }
   return elements();
+}
+
+string LinkedList::Union(LinkedList list1, LinkedList list2) {
+  Node * tmp = list1.head;
+  while(tmp -> nextElement){
+    tmp = tmp -> nextElement;
+  }
+  tmp -> nextElement = list2.head;
+  return list1.removeDuplicates();
+}
+
+string LinkedList::Intersection(LinkedList list1,LinkedList list2) { 
+  LinkedList list3;
+  Node *head1 = list1.head;
+  Node *head3 = list3. head;
+
+  while(head1){
+    if(list2.search(head1 -> data)){
+      list3.insertAtHead(head1 -> data);
+    }
+    head1 = head1 -> nextElement;
+  }
+
+  list3.removeDuplicates();
+  return list3.elements();
 }
 
 int main(int argc, char const *argv[])
