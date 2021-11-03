@@ -33,6 +33,7 @@ class LinkedList {
   bool detectLoop();
   int findMidSlow();
   int findMidFast();
+  string removeDuplicates();
 };
 
 LinkedList::LinkedList() {
@@ -234,6 +235,32 @@ int LinkedList::findMidFast(){
     }
   }
   return first -> data;
+}
+
+
+string LinkedList::removeDuplicates() { 
+  if(isEmpty()){
+    return elements();
+  }
+
+  Node * first; Node * second;
+  first = head;
+  second = head;
+  while(first -> nextElement){
+    while(second -> nextElement){
+      if(first -> data == second -> nextElement -> data){
+        Node * duplicate = second -> nextElement;
+        second -> nextElement = duplicate -> nextElement;
+        delete(duplicate);
+      }else{
+        second = second -> nextElement;
+      }
+    }
+    if(first -> nextElement)
+    first = first -> nextElement;
+    second = first;
+  }
+  return elements();
 }
 
 int main(int argc, char const *argv[])
