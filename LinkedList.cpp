@@ -36,6 +36,7 @@ class LinkedList {
   string removeDuplicates();
   string Union(LinkedList list1, LinkedList list2);
   string Intersection(LinkedList list1,LinkedList list2);
+  int findNth(int n);
 };
 
 LinkedList::LinkedList() {
@@ -288,6 +289,26 @@ string LinkedList::Intersection(LinkedList list1,LinkedList list2) {
 
   list3.removeDuplicates();
   return list3.elements();
+}
+
+
+int LinkedList::findNth(int n){
+  Node *first;
+  Node *second;
+  first = head; second = head;
+
+  for(int i=0;i<n;i++){
+  if(second -> nextElement){
+  second = second -> nextElement;
+  }else{
+    return -1;
+  }
+  }
+ while(second){
+    second = second -> nextElement;
+    first = first -> nextElement;
+  }
+  return first -> data;
 }
 
 int main(int argc, char const *argv[])
