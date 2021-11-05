@@ -133,7 +133,7 @@ public:
 };
 
 
-int main() {
+//int main() {
   
   /*myStack s(10);
   cout << "\ns.top(): " << s.getTop();
@@ -163,7 +163,7 @@ int main() {
   cout << "s.pop(): " << s.pop() << endl;
   cout << "The stack size is: " << s.getSize() << endl;*/
 
-    twoStacks tS(5);
+   /* twoStacks tS(5);
     tS.push1(11);
     tS.push1(3);
     tS.push1(7);
@@ -183,4 +183,4 @@ int main() {
 
   return 0;
   
-}
+}*/
