@@ -18,6 +18,9 @@ class BinarySearchTree {
     BinarySearchTree();
     BinarySearchTree(int rootValue);
     Node * getRoot();
+    void insertBSTIter(int val);
+    Node * insertRecur(Node * currentNode, int val);
+    void insertBST(int value);
 };
 
 
@@ -45,6 +48,57 @@ Node * BinarySearchTree::getRoot() {
   return root;
 }
 
+
+void BinarySearchTree::insertBSTIter(int val) {
+  if (getRoot() == NULL) {
+    root = new Node(val);
+    return;
+  }
+
+  Node * currentNode = root;
+  Node * parent;
+  
+  while (currentNode) {
+    parent = currentNode; 
+    if (val < currentNode -> value) {
+      
+      currentNode = currentNode -> leftChild;
+    } else {
+
+      currentNode = currentNode -> rightChild;
+    }
+  }
+  if (val < parent -> value) {
+    parent -> leftChild = new Node(val);
+  } else {
+    parent -> rightChild = new Node(val);
+  }
+
+}
+
+
+Node * BinarySearchTree::insertRecur(Node * currentNode, int val) {
+  if (currentNode == NULL) {
+    return new Node(val);
+  } else if (currentNode -> value > val) {
+
+    currentNode -> leftChild = insertRecur(currentNode -> leftChild, val);
+
+  } else {
+    currentNode -> rightChild = insertRecur(currentNode -> rightChild, val);
+  }
+
+  return currentNode;
+
+}
+
+void BinarySearchTree::insertBST(int value) {
+  if (getRoot() == NULL) {
+    root = new Node(value);
+    return;
+  }
+  insertRecur(this -> getRoot(), value);
+}
 
 int main() {
   BinarySearchTree BST(13);
