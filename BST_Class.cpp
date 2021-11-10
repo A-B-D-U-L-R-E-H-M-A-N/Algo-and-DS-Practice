@@ -76,7 +76,7 @@ void BinarySearchTree::insertBSTIter(int val) {
 
 }
 
-
+//Adding the recursive insert function
 Node * BinarySearchTree::insertRecur(Node * currentNode, int val) {
   if (currentNode == NULL) {
     return new Node(val);
