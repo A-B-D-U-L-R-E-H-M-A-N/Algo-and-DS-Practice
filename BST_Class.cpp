@@ -100,6 +100,20 @@ void BinarySearchTree::insertBST(int value) {
   insertRecur(this -> getRoot(), value);
 }
 
+
+int findMin(Node* rootNode) {
+  if(rootNode == NULL){
+    return 0;
+  }
+  if(rootNode -> leftChild == NULL){
+    return rootNode -> value;
+  }else{
+    return findMin(rootNode -> leftChild);
+  }
+}
+
+
+
 int main() {
   BinarySearchTree BST(13);
   cout << "The root value of the Binary Search Tree is " << BST.getRoot() -> value << endl;
