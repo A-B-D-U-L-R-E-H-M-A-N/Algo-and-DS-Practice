@@ -16,6 +16,7 @@ class myStack {
   int pop();
   int getSize();
   void showStack();
+  myStack sortStack(myStack stack, int size);
 };
 
 
@@ -32,6 +33,35 @@ bool myStack::isEmpty() {
 
 int myStack::getTop() {
   return (numElements == 0 ? -1 : stackArr[numElements - 1]);
+}
+
+myStack sortStack(myStack stack, int size){
+  myStack tmpStack(size);
+  int temp;
+  if(!stack.isEmpty())
+  temp = stack.pop();
+
+  tmpStack.push(temp);
+
+  while(!stack.isEmpty()){
+
+    if(stack.getTop() >= tmpStack.getTop()){
+      tmpStack.push(stack.pop());
+    }else{
+      temp = stack.pop();
+      while(tmpStack.getTop() > temp && !tmpStack.isEmpty()){
+      stack.push(tmpStack.pop());
+      }
+      tmpStack.push(temp);
+    }
+  }
+  while(!tmpStack.isEmpty()){
+    stack.push(tmpStack.pop());
+  }
+  
+
+  return stack;
+    
 }
 
 bool myStack::push(int value) {
@@ -133,9 +163,9 @@ public:
 };
 
 
-//int main() {
+int main() {
   
-  /*myStack s(10);
+  myStack s(10);
   cout << "\ns.top(): " << s.getTop();
   s.push(10);
   s.push(30);
@@ -161,9 +191,9 @@ public:
   s.showStack();
   cout << "\ns.pop(): " << s.pop() << endl;
   cout << "s.pop(): " << s.pop() << endl;
-  cout << "The stack size is: " << s.getSize() << endl;*/
+  cout << "The stack size is: " << s.getSize() << endl;
 
-   /* twoStacks tS(5);
+    twoStacks tS(5);
     tS.push1(11);
     tS.push1(3);
     tS.push1(7);
@@ -183,4 +213,4 @@ public:
 
   return 0;
   
-}*/
+}
